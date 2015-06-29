@@ -1,0 +1,33 @@
+﻿Build started 1/25/2015 8:39:36 PM.
+     1>Project "C:\Fury\DX%20Fury\MiscVisualStudio\MiscVisualStudio.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /MP /O2 /Oi /Oy- /GL /D WIN32 /D _CRT_SECURE_NO_WARNINGS /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /FR"Release\\" /Gd /TP /analyze- /errorReport:prompt texture.cpp
+         texture.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Fury\DX%20Fury\Release\MiscVisualStudio.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Fury\DX%20Fury\Release\MiscVisualStudio.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Fury\DX%20Fury\Release\MiscVisualStudio.lib" /MACHINE:X86 /SAFESEH Release\camera.obj
+         Release\directx.obj
+         Release\eventmaster.obj
+         Release\ImmediateIO.obj
+         Release\input.obj
+         Release\matrixd.obj
+         Release\mesh.obj
+         Release\movable.obj
+         Release\renderwindow.obj
+         Release\scene.obj
+         Release\shader.obj
+         Release\Source.obj
+         Release\texture.obj
+         Release\transformable.obj
+         Release\util.obj
+         Release\vertex.obj
+         Release\window.obj
+         Generating code
+         Finished generating code
+         MiscVisualStudio.vcxproj -> C:\Fury\DX%20Fury\Release\MiscVisualStudio.exe
+       BscMake:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"C:\Fury\DX%20Fury\Release\MiscVisualStudio.bsc" /n Release\camera.sbr Release\directx.sbr Release\eventmaster.sbr Release\ImmediateIO.sbr Release\input.sbr Release\matrixd.sbr Release\mesh.sbr Release\movable.sbr Release\renderwindow.sbr Release\scene.sbr Release\shader.sbr Release\Source.sbr Release\texture.sbr Release\transformable.sbr Release\util.sbr Release\vertex.sbr Release\window.sbr
+     1>Done Building Project "C:\Fury\DX%20Fury\MiscVisualStudio\MiscVisualStudio.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:08.06

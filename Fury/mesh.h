@@ -106,6 +106,11 @@ public:
 	{
 		mColour = c;
 	}
+
+	StaticMesh* parent()
+	{
+		return mParent;
+	}
 };
 
 

@@ -40,10 +40,7 @@ protected:
 		return child;
 	}
 
-	SceneNode* setParent(SceneNode* parent)
-	{
-		return mParent = parent;
-	}
+	SceneNode* setParent(SceneNode* parent) { return mParent = parent; }
 
 	
 public:
@@ -51,20 +48,11 @@ public:
 
 	virtual void perform(const math::mat4& accumulatedMatrix = math::mat4()) = 0; //Performs some action
 
-	NodeType nodeType()
-	{
-		return mType;
-	}
+	NodeType nodeType() { return mType; }
 
-	bool transformable()
-	{
-		return mTransformable;
-	}
+	bool transformable() { return mTransformable; }
 
-	SceneNode* getParent()
-	{
-		return mParent;
-	}
+	SceneNode* getParent() { return mParent; }
 
 	/**Tries to delete the element from its children. Use with care.*/
 	template<class T>
@@ -120,10 +108,7 @@ public:
 
 	virtual void perform(const math::mat4& accumulatedMatrix = math::mat4());
 
-	void setDrawable(Drawable* drawable)
-	{
-		mDrawable = drawable;
-	}
+	void addDrawable(Drawable* drawable) { mDrawable = drawable; }
 };
 
 
@@ -135,9 +120,7 @@ protected:
 public:
 
 	CameraNode(SceneNode* parent, Camera* camera, Scene* scene) : TransformNode(parent, scene), mCamera(camera)
-	{
-		mType = CAMERA;
-	}
+	{ 	mType = CAMERA; }
 
 	virtual void perform(RenderWindow* window, const math::mat4& accumulatedMatrix = math::mat4());
 };
@@ -156,10 +139,7 @@ public:
 	LightNode(SceneNode* parent, Scene* scene, LightType type); //Type, iterator to light from light list in scene for deletion.
 
 
-	LightType type()
-	{
-		return mLightType;
-	}
+	LightType type() { return mLightType; }
 
 	void computePosition() //Goes down the tree to compute the position of the light at the current frame
 	{
@@ -238,55 +218,33 @@ public:
 
 	void clear();
 
-	void setWindow(RenderWindow* window)
-	{
-		mWindow = window;
-	}
+	void setWindow(RenderWindow* window) { mWindow = window; }
 
-	RenderWindow* getWindow()
-	{
-		return mWindow;
-	}
+	RenderWindow* getWindow() { return mWindow; }
 
 	TransformNode* createTransformNode(SceneNode* parent)
-	{
-		return parent->addChild(new TransformNode(parent, this));
-	}
+	{ return parent->addChild(new TransformNode(parent, this)); }
 
 	DrawableNode* createDrawableNode(SceneNode* parent)
-	{
-		return parent->addChild(new DrawableNode(parent, this));
-	}
+	{ return parent->addChild(new DrawableNode(parent, this)); }
 
 	CameraNode* createCameraNode(SceneNode* parent, Camera* camera) //Kinda useless at the moment...
-	{
-		return parent->addChild(new CameraNode(parent, camera, this));
-	}
+	{ return parent->addChild(new CameraNode(parent, camera, this)); }
 
 	DirectionalLightNode* createDirectionalLightNode(SceneNode* parent)
-	{
-		return parent->addChild(new DirectionalLightNode(parent, this));
-	}
+	{ return parent->addChild(new DirectionalLightNode(parent, this)); }
 
 	PointLightNode* createPointLightNode(SceneNode* parent)
-	{
-		return parent->addChild(new PointLightNode(parent, this));
-	}
+	{ return parent->addChild(new PointLightNode(parent, this)); }
 
 	SpotLightNode* createSpotLightNode(SceneNode* parent)
-	{
-		return parent->addChild(new SpotLightNode(parent, this));
-	}
+	{ return parent->addChild(new SpotLightNode(parent, this)); }
 
 	void setActiveCamera(Camera* camera)
-	{
-		mActiveCamera = camera;
-	}
+	{ mActiveCamera = camera; }
 
 	Camera* getActiveCamera()
-	{
-		return mActiveCamera;
-	}
+	{ return mActiveCamera; }
 
 
 	//The iterator implementation:
@@ -302,7 +260,7 @@ public:
 
 	public:
 		iterator(SceneNode* node) : mRootNode(node), mNode(node), reachedEnd(false)
-		{
+		{ 
 			stack.push(0); //start index.
 		}
 

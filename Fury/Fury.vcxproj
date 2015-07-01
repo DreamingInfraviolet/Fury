@@ -56,10 +56,14 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <BrowseInformation>true</BrowseInformation>
+      <AdditionalIncludeDirectories>C:\Fury\Fury\ThirdParty\Physx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Fury\Fury\ThirdParty\Physx\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PhysX3DEBUG_x86.lib;PhysX3CommonDEBUG_x86.lib;PhysX3ExtensionsDEBUG.lib;PhysXVisualDebuggerSDKDEBUG.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
@@ -76,12 +80,16 @@
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <BrowseInformation>true</BrowseInformation>
+      <AdditionalIncludeDirectories>C:\Fury\Fury\ThirdParty\Physx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Fury\Fury\ThirdParty\Physx\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PhysX3_x86.lib;PhysX3Common_x86.li;PhysX3Extensions.lib;PhysXVisualDebuggerSDK.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
@@ -97,6 +105,7 @@
     <ClCompile Include="matrixd.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="movable.cpp" />
+    <ClCompile Include="physics.cpp" />
     <ClCompile Include="raycasting.cpp" />
     <ClCompile Include="renderwindow.cpp" />
     <ClCompile Include="scene.cpp" />
@@ -126,6 +135,7 @@
     <ClInclude Include="mesh.h" />
     <ClInclude Include="message.h" />
     <ClInclude Include="movable.h" />
+    <ClInclude Include="physics.h" />
     <ClInclude Include="raycasting.h" />
     <ClInclude Include="renderstate.h" />
     <ClInclude Include="rendertarget.h" />

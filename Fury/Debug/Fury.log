@@ -1,21 +1,14 @@
-﻿Build started 29/06/2015 15:11:22.
+﻿Build started 01/07/2015 20:57:11.
      1>Project "C:\Fury\Fury\Fury\Fury.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (MiscVisualStudio.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W4 /WX- /MP /Od /Oy- /D WIN32 /D _CRT_SECURE_NO_WARNINGS /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt texture.cpp util.cpp vertex.cpp window.cpp
-         texture.cpp
-         util.cpp
-         vertex.cpp
-         window.cpp
-     1>c:\fury\fury\fury\texture.cpp(137): warning C4100: 'file': unreferenced formal parameter
-     1>c:\fury\fury\fury\texture.cpp(167): warning C4100: 'file': unreferenced formal parameter
-     1>c:\fury\fury\fury\texture.cpp(172): warning C4100: 'data': unreferenced formal parameter
-     1>c:\fury\fury\fury\texture.cpp(172): warning C4100: 'components': unreferenced formal parameter
-     1>c:\fury\fury\fury\texture.cpp(172): warning C4100: 'height': unreferenced formal parameter
-     1>c:\fury\fury\fury\texture.cpp(172): warning C4100: 'width': unreferenced formal parameter
-     1>c:\fury\fury\fury\texture.cpp(177): warning C4100: 'type': unreferenced formal parameter
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /IC:\Fury\Fury\ThirdParty\Physx\include /ZI /nologo /W4 /WX- /MP /Od /Oy- /D WIN32 /D _CRT_SECURE_NO_WARNINGS /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt physics.cpp
+         physics.cpp
+     1>c:\fury\fury\fury\physics.cpp(28): warning C4189: 'material': local variable is initialized but not referenced
+     1>c:\fury\fury\fury\physics.cpp(47): warning C4189: 'theConnection': local variable is initialized but not referenced
+     1>c:\fury\fury\fury\physics.cpp(68): warning C4100: 'mesh': unreferenced formal parameter
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Fury\Fury\Debug\Fury.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Fury\Fury\Debug\Fury.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Fury\Fury\Debug\Fury.lib" /MACHINE:X86 Debug\camera.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Fury\Fury\Debug\Fury.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Fury\Fury\ThirdParty\Physx\lib PhysX3DEBUG_x86.lib PhysX3CommonDEBUG_x86.lib PhysX3ExtensionsDEBUG.lib PhysXVisualDebuggerSDKDEBUG.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Fury\Fury\Debug\Fury.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Fury\Fury\Debug\Fury.lib" /MACHINE:X86 Debug\camera.obj
          Debug\Console.obj
          Debug\directx.obj
          Debug\eventmaster.obj
@@ -24,6 +17,7 @@
          Debug\matrixd.obj
          Debug\mesh.obj
          Debug\movable.obj
+         Debug\physics.obj
          Debug\raycasting.obj
          Debug\renderwindow.obj
          Debug\scene.obj
@@ -36,9 +30,9 @@
          Debug\window.obj
          Fury.vcxproj -> C:\Fury\Fury\Debug\Fury.exe
        BscMake:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\bscmake.exe /nologo /o"C:\Fury\Fury\Debug\Fury.bsc" /n Debug\camera.sbr Debug\Console.sbr Debug\directx.sbr Debug\eventmaster.sbr Debug\ImmediateIO.sbr Debug\input.sbr Debug\matrixd.sbr Debug\mesh.sbr Debug\movable.sbr Debug\raycasting.sbr Debug\renderwindow.sbr Debug\scene.sbr Debug\shader.sbr Debug\Source.sbr Debug\texture.sbr Debug\transformable.sbr Debug\util.sbr Debug\vertex.sbr Debug\window.sbr
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\bscmake.exe /nologo /o"C:\Fury\Fury\Debug\Fury.bsc" /n Debug\camera.sbr Debug\Console.sbr Debug\directx.sbr Debug\eventmaster.sbr Debug\ImmediateIO.sbr Debug\input.sbr Debug\matrixd.sbr Debug\mesh.sbr Debug\movable.sbr Debug\physics.sbr Debug\raycasting.sbr Debug\renderwindow.sbr Debug\scene.sbr Debug\shader.sbr Debug\Source.sbr Debug\texture.sbr Debug\transformable.sbr Debug\util.sbr Debug\vertex.sbr Debug\window.sbr
      1>Done Building Project "C:\Fury\Fury\Fury\Fury.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:07.05
+Time Elapsed 00:00:08.58

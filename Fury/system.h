@@ -10,6 +10,7 @@
 #include "shader.h"
 #include "timer.h"
 #include "game.h"
+#include "physics.h"
 
 #include<list>
 
@@ -22,6 +23,7 @@ private:
 	}
 
 	RenderWindow mWindow;
+	Physics mPhysics;
 	EventMaster mEventMaster;
 	bool mRunning;
 
@@ -42,9 +44,14 @@ public:
 	{
 		if (
 			!mWindow.initialise(hInstance) ||
+			!mPhysics.initialise() ||
 			!mEventMaster.initialise()
 			)
 			return false;
+
+#ifdef _DEBUG
+		mPhysics.connectToDebugVisualiser();
+#endif
 		return true;
 	}
 
@@ -67,7 +74,7 @@ public:
 		Timer timer;
 		Game game(&mWindow);
 
-		if (!game.initialise())
+		if (!game.initialise(&mPhysics))
 			return false;
 
 		while (mWindow.isOpen())
@@ -78,6 +85,8 @@ public:
 			if (!game.processInput(timer.deltaTime()))
 				break;
 			game.frame(timer.deltaTime());
+			mPhysics.startComputation();
+			mPhysics.joinComputation();
 			game.draw();
 
 			mWindow.present();
@@ -88,6 +97,7 @@ public:
 
 	void shutdown()
 	{
+		mPhysics.shutdown();
 		mWindow.shutdown();
 	}
 

@@ -6,7 +6,7 @@
 #include "camera.h"
 #include "renderwindow.h"
 #include "shader.h"
-
+#include "physics.h"
 #include "matrixd.h"
 
 
@@ -33,13 +33,16 @@ public:
 	DrawableNode* node;
 
 	/**Adds itself to the Scene*/
-	Piece(const Coord& c, const Team t, StaticMesh* mesh, Scene* scene) : coord(c), team(t)
+	Piece(const Coord& c, const Team t, StaticMesh* mesh, Scene* scene, Physics* physics) : coord(c), team(t)
 	{
 		inst = mesh->createInstance();
 		node = scene->createDrawableNode(scene->getRootNode());
-		node->setDrawable(inst); //Shoudn't this be "addDrawable"?
+		
+		node->addDrawable(inst);
 		setPos(coord);
 		node->scale(0.015f);
+
+		physics->registerObject(node, inst->parent());
 
 		switch (t)
 		{
@@ -76,14 +79,14 @@ public:
 	StaticMeshInstance* inst;
 	DrawableNode* node;
 
-	bool initialise(Scene* scene, RenderWindow* window)
+	bool initialise(Scene* scene, RenderWindow* window, Physics* physics)
 	{
 		if (!obj.load("Game/Models/Board.vmf"))
 			return false;
 		obj.upload(window);
 		inst = obj.createInstance();
 		node = scene->createDrawableNode(scene->getRootNode());
-		node->setDrawable(inst);
+		node->addDrawable(inst);
 
 		//Move board to the centre using chess coordinates, and scale:
 		node->setPos(3.5f, 0.f, 3.5f);
@@ -95,36 +98,35 @@ public:
 		
 		for (int i = 0; i < 8; ++i)
 		{
-			pieces.push_back(Piece(Coord(i, 1), WHITE, &chessMeshes[PAWN], scene));
-			pieces.push_back(Piece(Coord(i, 6), BLACK, &chessMeshes[PAWN], scene));
+			pieces.push_back(Piece(Coord(i, 1), WHITE, &chessMeshes[PAWN], scene, physics));
+			pieces.push_back(Piece(Coord(i, 6), BLACK, &chessMeshes[PAWN], scene, physics));
 		}
 
-		pieces.push_back(Piece(Coord(0, 0), WHITE, &chessMeshes[ROOK], scene));
-		pieces.push_back(Piece(Coord(7, 0), WHITE, &chessMeshes[ROOK], scene));
-		pieces.push_back(Piece(Coord(0, 7), BLACK, &chessMeshes[ROOK], scene));
-		pieces.push_back(Piece(Coord(7, 7), BLACK, &chessMeshes[ROOK], scene));
+		pieces.push_back(Piece(Coord(0, 0), WHITE, &chessMeshes[ROOK], scene, physics));
+		pieces.push_back(Piece(Coord(7, 0), WHITE, &chessMeshes[ROOK], scene, physics));
+		pieces.push_back(Piece(Coord(0, 7), BLACK, &chessMeshes[ROOK], scene, physics));
+		pieces.push_back(Piece(Coord(7, 7), BLACK, &chessMeshes[ROOK], scene, physics));
 
-		pieces.push_back(Piece(Coord(1, 0), WHITE, &chessMeshes[KNIGHT], scene));
+		pieces.push_back(Piece(Coord(1, 0), WHITE, &chessMeshes[KNIGHT], scene, physics));
 		pieces.back().node->rotate(math::Quaternion().fromAxisRotation(math::vec3(0,1,0), -math::PIHalf));
-		pieces.push_back(Piece(Coord(6, 0), WHITE, &chessMeshes[KNIGHT], scene));
+		pieces.push_back(Piece(Coord(6, 0), WHITE, &chessMeshes[KNIGHT], scene, physics));
 		pieces.back().node->rotate(math::Quaternion().fromAxisRotation(math::vec3(0, 1, 0), -math::PIHalf));
-		pieces.push_back(Piece(Coord(1, 7), BLACK, &chessMeshes[KNIGHT], scene));
+		pieces.push_back(Piece(Coord(1, 7), BLACK, &chessMeshes[KNIGHT], scene, physics));
 		pieces.back().node->rotate(math::Quaternion().fromAxisRotation(math::vec3(0, 1, 0), math::PIHalf));
-		pieces.push_back(Piece(Coord(6, 7), BLACK, &chessMeshes[KNIGHT], scene));
+		pieces.push_back(Piece(Coord(6, 7), BLACK, &chessMeshes[KNIGHT], scene, physics));
 		pieces.back().node->rotate(math::Quaternion().fromAxisRotation(math::vec3(0, 1, 0), math::PIHalf));
 
-		pieces.push_back(Piece(Coord(2, 0), WHITE, &chessMeshes[BISHOP], scene));
-		pieces.push_back(Piece(Coord(5, 0), WHITE, &chessMeshes[BISHOP], scene));
-		pieces.push_back(Piece(Coord(2, 7), BLACK, &chessMeshes[BISHOP], scene));
-		pieces.push_back(Piece(Coord(5, 7), BLACK, &chessMeshes[BISHOP], scene));
+		pieces.push_back(Piece(Coord(2, 0), WHITE, &chessMeshes[BISHOP], scene, physics));
+		pieces.push_back(Piece(Coord(5, 0), WHITE, &chessMeshes[BISHOP], scene, physics));
+		pieces.push_back(Piece(Coord(2, 7), BLACK, &chessMeshes[BISHOP], scene, physics));
+		pieces.push_back(Piece(Coord(5, 7), BLACK, &chessMeshes[BISHOP], scene, physics));
 
-		pieces.push_back(Piece(Coord(4, 0), WHITE, &chessMeshes[KING], scene));
-		pieces.push_back(Piece(Coord(3, 7), BLACK, &chessMeshes[KING], scene));
+		pieces.push_back(Piece(Coord(4, 0), WHITE, &chessMeshes[KING], scene, physics));
+		pieces.push_back(Piece(Coord(3, 7), BLACK, &chessMeshes[KING], scene, physics));
 
-		pieces.push_back(Piece(Coord(3, 0), WHITE, &chessMeshes[QUEEN], scene));
-		pieces.push_back(Piece(Coord(4, 7), BLACK, &chessMeshes[QUEEN], scene));
+		pieces.push_back(Piece(Coord(3, 0), WHITE, &chessMeshes[QUEEN], scene, physics));
+		pieces.push_back(Piece(Coord(4, 7), BLACK, &chessMeshes[QUEEN], scene, physics));
 		
-		scene->erase(++(++scene->begin()));
 		return true;
 	}
 
@@ -182,12 +184,12 @@ public:
 		scene.setActiveCamera(&camera);
 	}
 
-	bool initialise()
+	bool initialise(Physics* physics)
 	{
 		if (
 		!loadTextures() ||
 		!loadObjects() ||
-		!board.initialise(&scene, window))
+		!board.initialise(&scene, window, physics))
 			return false;
 
 		ShaderProgramDescriptor shaderDesc("Shaders/test.vs", "Shaders/test.fs",

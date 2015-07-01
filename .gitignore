@@ -1,8 +1,19 @@
+# Ignore third party
+ThirdParty
+
+
 # Compiled Object files
 *.slo
 *.lo
+*.log
+*.pdb
+*.sbr
+*.tlog
 *.o
 *.obj
+*.dll
+*.map
+*.ilk
 
 # Precompiled Headers
 *.gch

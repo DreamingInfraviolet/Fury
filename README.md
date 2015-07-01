@@ -8,5 +8,8 @@ A few notable differences compared to Overcast:
 - A less controlled rendering pipeline more similar to SFML
 - Uses DirectX as opposed to OpenGL
 - An arguably more elegant shader system
-- No third party dependencies whatsoever outside of the Visual Studio 2015 standard library
+- 2015 standard library
 - A forward rendering pipeline
+
+Dependencies:
+- PhysX

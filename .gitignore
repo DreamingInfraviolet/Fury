@@ -1,6 +1,7 @@
 # Ignore third party
 ThirdParty
 
+*.sdf
 
 # Compiled Object files
 *.slo
